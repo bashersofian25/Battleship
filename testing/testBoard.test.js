@@ -74,3 +74,43 @@ test("does not accept out of range inputs", () => {
     expect(() => {myBoard.containsShip([10, 10])}).toThrow("Out of range!");
     expect(() => {myBoard.isAttacked([10, 10])}).toThrow("Out of range!");
 });
+
+test('board can lose correctly', () => {
+    const myBoard = board();
+    const myShip = ship(2);
+    myBoard.placeShip(myShip, [2 ,2], true);
+    expect(myBoard.receiveAttack([2 ,2])).toBe(true);
+    expect(myBoard.isLost()).toBe(false);
+    expect(myBoard.receiveAttack([2 ,3])).toBe(true);
+    expect(myBoard.isLost()).toBe(true);
+});
+
+test('board does not lose correctly', () => {
+    const myBoard = board();
+    const myShip = ship(2);
+    const anotherShip = ship(2);
+    myBoard.placeShip(myShip, [2 ,2], true);
+    myBoard.placeShip(anotherShip, [3 ,3], true);
+    expect(myBoard.receiveAttack([2 ,2])).toBe(true);
+    expect(myBoard.isLost()).toBe(false);
+    expect(myBoard.receiveAttack([2 ,3])).toBe(true);
+    expect(myBoard.isLost()).toBe(false);
+});
+
+
+test('board can lose with more than one ship', () => {
+    const myBoard = board();
+    const myShip = ship(2);
+    const anotherShip = ship(2);
+    myBoard.placeShip(myShip, [2 ,2], true);
+    myBoard.placeShip(anotherShip, [3 ,3], true);
+    expect(myBoard.receiveAttack([2 ,2])).toBe(true);
+    expect(myBoard.isLost()).toBe(false);
+    expect(myBoard.receiveAttack([2 ,3])).toBe(true);
+    expect(myBoard.isLost()).toBe(false);
+    expect(myBoard.receiveAttack([3 ,3])).toBe(true);
+    expect(myBoard.isLost()).toBe(false);
+    expect(myBoard.receiveAttack([3 ,4])).toBe(true);
+    expect(myBoard.isLost()).toBe(true);
+});
+

@@ -1,6 +1,7 @@
 const square = () => {
     let hit = false;
     let squareShip = null;
+    
 
     const applyAttack = () => {
         shipOnSquare().hit();
@@ -34,6 +35,7 @@ const square = () => {
 const createBoard = () => {
 
     const _board = [];
+    let _ships = [];
     for(let i = 0; i<10; i++){
         let arr = [];
         for(let j = 0; j<10; j++){
@@ -66,6 +68,7 @@ const createBoard = () => {
                 }
             }
         }
+        _ships.push(ship);
         return true;
     };
 
@@ -93,9 +96,20 @@ const createBoard = () => {
             throw new Error("Out of range!");
         }
     };
+
+    const isLost = () => {
+        for (const ship in _ships){
+            if(!_ships[ship].isSunk()){
+                
+                return false;
+            }
+        }
+        return true;
+    };
+
     
 
-    return {placeShip, receiveAttack, isAttacked, containsShip};
+    return {placeShip, receiveAttack, isAttacked, containsShip, isLost};
 };
 
 
