@@ -30,3 +30,8 @@ test('player can attack, and other player is affected', () => {
     expect(human.attack(computer, [2, 2])).toBe(true);
     expect(computer.getPlayerBoard().isAttacked([2, 2])).toBe(true);
 });
+
+test('getting player id', () => {
+    const player = createPlayer(true, 'myPlayer');
+    expect(player.getPlayerID()).toBe('myPlayer');
+});

@@ -1,6 +1,6 @@
 const createBoard = require('./GameBoard');
 
-const createPlayer = (isHuman) => {
+const createPlayer = (isHuman, playerID) => {
     const playerBoard = createBoard();
     const isPlayerHuman = () => {return isHuman;};
     const attacked = (coordinates) => {
@@ -11,8 +11,11 @@ const createPlayer = (isHuman) => {
     const attack = (opponent, coordinates) => {
         return opponent.attacked(coordinates);
     };
+    const getPlayerID = () => {
+        return playerID;
+    }
 
-    return {isPlayerHuman, attacked, getPlayerBoard, attack};
+    return {isPlayerHuman, attacked, getPlayerBoard, attack, getPlayerID};
 };
 
 module.exports = createPlayer;
