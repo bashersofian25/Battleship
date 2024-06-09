@@ -48,6 +48,11 @@ const createBoard = () => {
                 return false;
             }else{
                 for (let i = 0; i<ship.shipLength; i++){
+                    if(containsShip([firstCoordinate[0],firstCoordinate[1]+i]) !== false){
+                        return false;
+                    } 
+                }
+                for (let i = 0; i<ship.shipLength; i++){
                     _board[firstCoordinate[0]][firstCoordinate[1]+i].setShipOnSquare(ship) 
                 }
             }

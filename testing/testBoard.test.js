@@ -22,6 +22,20 @@ test('placing ships incorrectly (out of range) returns false', () => {
 
 });
 
+
+
+
+test('placing ships on top of each other, returns false', () => {
+
+    const myBoard = board();
+    const firstShip = ship(2);
+    const secondShip = ship(2);
+    const firstPlaced = myBoard.placeShip(firstShip, [4,4], false);
+    expect(firstPlaced).toBe(true);
+    const secondPlaced = myBoard.placeShip(secondShip, [4,4], true);
+    expect(secondPlaced).toBe(false);
+});
+
 test('squares getting attacked correctly', () => {
     const myBoard = board();
     expect(myBoard.isAttacked([2, 2])).toBe(false);
