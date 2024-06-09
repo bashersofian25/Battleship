@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack serve",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "keywords": [],
   "author": "Basheer Al-Halabi",
