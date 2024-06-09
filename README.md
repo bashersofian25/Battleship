@@ -1,2 +1,2 @@
-# webpack-quicksetup
-A template for webpack configuration
+# Battleship
+A war game between ships
