@@ -1,6 +1,6 @@
 
 
-export const buildBoard = (id) => {
+export const buildBoard = (id, handleClick) => {
     const board = document.createElement('div');
     board.setAttribute('id', id);
     board.setAttribute('class', "board");
@@ -17,16 +17,16 @@ export const buildBoard = (id) => {
             square.classList.add('square');
             square.addEventListener('click',(e) => {
                 const coordinates = []
-                coordinates.push(e.target.getAttribute('row'));
-                coordinates.push(e.target.getAttribute('col'));
-                console.log(coordinates);
-
+                const playerID = e.target.parentNode.parentNode.id;
+                coordinates.push(parseInt(e.target.getAttribute('row')));
+                coordinates.push(parseInt(e.target.getAttribute('col')));
+                console.log(coordinates, playerID);
+                handleClick(coordinates, playerID, e);
             });
             rows[i].append(square);
         }
         board.append(rows[i]);
         
     }
-    console.log(board);
     return board;
 };

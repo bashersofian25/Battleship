@@ -1,6 +1,15 @@
 h1 {
     color: red;
 }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 20px;
+    background-color: bisque;
+}
 
 .board {
     display: flex;
@@ -14,8 +23,16 @@ h1 {
     height: 500px;
     flex: 0 0 500px;
     background-color: white;
+    margin: 50px;
 }
 
+button{
+    border-radius: 1.5px;
+    border-style: none;
+    padding: 20px;
+    font-family: inherit;
+    font-size: inherit;
+}
 .row {
     display: flex;
     justify-content: stretch;
@@ -23,8 +40,29 @@ h1 {
     flex: auto;
 }
 
+.square:hover{
+    border-style: dashed;
+    border-color: red;
+    background-color: blue;
+}
+
 .square {
     border-style: solid;
     border-width: 1px;
     flex: auto;
-} 
+}
+.square.empty {
+    background-color: burlywood;
+}
+
+.square.onShip {
+    background-color: brown;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 100px;
+}
+

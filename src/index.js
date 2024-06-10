@@ -1,6 +1,7 @@
 import "./style.css";
-import { buildBoard } from "./interface/board";
+import { startGame } from "./interface/game";
 console.log("working!");
 
+let game = startGame();
 
 

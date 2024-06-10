@@ -8,7 +8,7 @@ const createShip = (length) => {
         hitsReceived++;
     };
     const isSunk = () => {
-        if(hitsReceived === shipLength){
+        if(howManyReceivedHits() === shipLength){
             return true;
         }
         return false;
@@ -18,7 +18,7 @@ const createShip = (length) => {
         return hitsReceived;
     }
 
-    return {isSunk, hit, shipLength, howManyReceivedHits};
+    return {isSunk, hit, shipLength, howManyReceivedHits, hitsReceived};
 
 };
 

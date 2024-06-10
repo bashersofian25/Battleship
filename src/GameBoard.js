@@ -98,11 +98,15 @@ const createBoard = () => {
     };
 
     const isLost = () => {
+        if(_ships.length === 0){
+            return false;
+        }
         for (const ship in _ships){
-            if(!_ships[ship].isSunk()){
+            if(_ships[ship].isSunk() === false){
                 
                 return false;
             }
+            
         }
         return true;
     };
