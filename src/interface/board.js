@@ -1,9 +1,13 @@
 
 
-export const buildBoard = (id, handleClick) => {
+export const renderBoard = (player, handelClick) => {
+  
     const board = document.createElement('div');
-    board.setAttribute('id', id);
+    board.setAttribute('id', player.getPlayerID());
     board.setAttribute('class', "board");
+
+    const playerBoard  = player.getPlayerBoard();
+    const id = player.getPlayerID();
 
     const rows = [];
 
@@ -15,13 +19,26 @@ export const buildBoard = (id, handleClick) => {
             square.setAttribute('row', i);
             square.setAttribute('col', j);
             square.classList.add('square');
+            if(player.getPlayerID() === "player1"){
+                if(player.getPlayerBoard().containsShip([i, j])){
+                    square.classList.add('my-ship');
+                }
+                
+            }
+            if(playerBoard.isAttacked([i,j]) && playerBoard.containsShip([i,j])){
+                square.classList.add('onShip');
+            }else if(playerBoard.isAttacked([i,j])){
+                square.classList.add('empty');
+            }
             square.addEventListener('click',(e) => {
                 const coordinates = []
-                const playerID = e.target.parentNode.parentNode.id;
+                if(player.getPlayerID() ==  'player1'){// very bad code (Ew,yuck) wrote a lot of it today
+                    return;
+                }
+                
                 coordinates.push(parseInt(e.target.getAttribute('row')));
                 coordinates.push(parseInt(e.target.getAttribute('col')));
-                console.log(coordinates, playerID);
-                handleClick(coordinates, playerID, e);
+                e.target.addEventListener('click',handelClick(coordinates));
             });
             rows[i].append(square);
         }

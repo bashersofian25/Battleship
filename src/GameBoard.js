@@ -64,7 +64,12 @@ const createBoard = () => {
                 return false;
             }else {
                 for (let i = 0; i<ship.shipLength; i++){
-                    _board[firstCoordinate[1]][firstCoordinate[0]+i].setShipOnSquare(ship) 
+                    if(containsShip([firstCoordinate[0]+i,firstCoordinate[1]]) !== false){
+                        return false;
+                    } 
+                }
+                for (let i = 0; i<ship.shipLength; i++){
+                    _board[firstCoordinate[0]+i][firstCoordinate[1]].setShipOnSquare(ship) 
                 }
             }
         }
@@ -113,7 +118,7 @@ const createBoard = () => {
 
     
 
-    return {placeShip, receiveAttack, isAttacked, containsShip, isLost};
+    return {placeShip, receiveAttack, isAttacked, containsShip, isLost, _ships};
 };
 
 

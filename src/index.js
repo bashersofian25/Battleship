@@ -1,7 +1,10 @@
 import "./style.css";
 import { startGame } from "./interface/game";
-console.log("working!");
+import createPlayer from "./createPlayer";
 
-let game = startGame();
+
+
+const startGameButton = document.querySelector('button');
+startGameButton.addEventListener('click', () => {startGame(createPlayer(true, "player1"), createPlayer(false, 'player2'));});
 
 
